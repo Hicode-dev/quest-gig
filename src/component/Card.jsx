@@ -43,7 +43,7 @@ const Fetch= async () =>{
         <div className="image p-3">
           <img src={image2} alt="" />
         </div>
-        <h5 className='py-3'>{C.description}  <a href={C.url}>see more</a></h5>
+        <h5 className='py-3'>{C.description}  <a href={C.url} className='text-blue-700'>see more</a></h5>
 
           <div className="icons flex px-3 justify-between items-center">
               <AiFillWechat  className='text-2xl '  />
