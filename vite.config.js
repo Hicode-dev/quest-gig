@@ -5,16 +5,16 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-    build: {
+  import react from 'react';
+
+export default {
+  build: {
     rollupOptions: {
-      external: ['react','react-dom','react-icons'] // Add 'react-icons' to the external array
+      external: [
+        'react-icons/bs',
+      ],
     },
-   
   },
- // Other config options...
- resolve: {
-  alias: {
-    'react-icons': path.resolve(__dirname, 'node_modules/react-icons'),
-  }
-}
+};
+
 })
