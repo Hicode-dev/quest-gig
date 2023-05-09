@@ -10,10 +10,9 @@ import Card from './component/Card'
 
 function App() {
   const [count, setCount] = useState(0)
-
   return (
     <div className="App">
-      <Navbar  />
+      <Navbar/>
       <QuestGig />
       <Search />
       <DisplayButton /> 
