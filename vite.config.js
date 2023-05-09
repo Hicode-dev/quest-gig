@@ -1,3 +1,5 @@
+import path from 'path'
+
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
@@ -9,5 +11,10 @@ export default defineConfig({
     },
    
   },
-
+ // Other config options...
+ resolve: {
+  alias: {
+    'react-icons': path.resolve(__dirname, 'node_modules/react-icons'),
+  }
+}
 })
