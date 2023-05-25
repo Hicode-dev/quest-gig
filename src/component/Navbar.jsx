@@ -1,13 +1,23 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 import {BsFillCloudSunFill} from 'react-icons/bs'
 import {FaMoon} from 'react-icons/fa'
-
+import { FaSearch } from 'react-icons/fa'
 const Navbar = () => {
+  const [city, setCity] = useState('');
+  const [country, setCountry] = useState('ng');
+  const [temperature, setTemperature] = useState('');
+  const [description, setDescription] = useState('');
+  const [error, setError] = useState('');
+
+
+
   return (
     <div className='flex justify-between px-10 items-center  shadow-sm py-5'>
       <div className="weather">
        <BsFillCloudSunFill className='sm:text-3xl text-blue-600'  />
       </div>
+  
+
 
     <div className="middle-content hidden md:block">
         <ul className='flex gap-5'>

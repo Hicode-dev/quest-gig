@@ -24,7 +24,7 @@ const Card = () => {
     };
     let { data } = await axios.get('https://questgig.com/api/v2/news?q=10', config)
     setNewsData(data.articles.slice(0, numArticles))
-    console.log(data.articles);
+    // console.log(data.articles);
   }
   useEffect(() => {
     Fetch()
@@ -41,6 +41,7 @@ const Card = () => {
       {
         newsData.map((C) => (
           <CardCard
+          
             title ={C.title}
             image ={C.news_thumbnail            }
             alt = 'image'
