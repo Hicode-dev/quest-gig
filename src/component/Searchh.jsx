@@ -16,7 +16,7 @@ const Searchh = () => {
         <button className='outline-none border-none  lg:w-[900px]' onClick={()=>{
             navigate('/search')
         }} >
-a
+
         </button>
         <div className='gap-2 flex'>
      <RiScreenshot2Fill />
