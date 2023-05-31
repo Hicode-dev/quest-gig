@@ -10,11 +10,21 @@ import Card from './component/Card'
 import axios from 'axios'
 import { useEffect } from 'react'
 import SearchPageResult from './pages/SearchPageResult'
+import Home from './pages/Home'
+import {useNavigate} from 'react-router-dom'
+
+// import {useHistory} from 'react-router'
+
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Searchh from './component/Searchh'
+
 function App() {
+
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
   const [load, setLoad] = useState(false)
   const [query, setQuery] = useState(true)
+  // const navigate = useNavigate();
 
   // const apiKey = '65gh2-60GD-1842-QAPI'; // Replace with your actual API key
 // console.log(data);
@@ -23,7 +33,8 @@ function All(query) {
 
 }
 
-  // const [query, setQuery] = useState('')
+
+// const [query, setQuery] = useState('')
   const apiKey = '65gh2-60GD-1842-QAPI'; // Replace with your actual API key
   // const searchQuery = 'lorem' ; // Replace with your search query
 
@@ -52,19 +63,22 @@ function All(query) {
   }, [])
   return (
     <div className="App">
-      <Navbar />
-      <QuestGig />
-      <Search setData={setData} setLoading={setLoading}  onchange={(e) => handleSearch(e.target.value)} />
-      {loading ? <p>losakdmkmdf </p> : data.length > 0 ? <>
-      </>:
-        <>
-          <DisplayButton />
-          <Card />
-        </>
-      }
-      {}
+      {/* <Navbar /> */}
+   
+
+    
+ 
+
+        <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/search" element={<SearchPageResult />} />
+      </Routes>
+    </Router>
+
     </div>
   )
+  
 }
 
 export default App
