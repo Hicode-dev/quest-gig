@@ -8,51 +8,50 @@ import { FaSearch } from 'react-icons/fa'
 import QuestGig from '../component/QuestGig'
 import image1 from '../assets/Group 28.svg'
 import Result from './Result'
+import Sugestion from '../component/Sugestion'
 
-const SearchPageResult = () => {
-  const [data, setData] = useState([])
-  const [loading, setLoading] = useState(false)
-  const [load, setLoad] = useState(false)
-  const [query, setQuery] = useState(true)
-  
+const SearchPageResult = ({searchQuery}) => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [query, setQuery] = useState('');
 
-
-  // Start navigation when the component mounts
-
-
-  // const apiKey = '65gh2-60GD-1842-QAPI'; // Replace with your actual API key
-// console.log(data);
-function All(query) {
-//  console.log(query);
-
-}
-
-  // const [query, setQuery] = useState('')
   const apiKey = '65gh2-60GD-1842-QAPI'; // Replace with your actual API key
-  // const searchQuery = 'lorem' ; // Replace with your search query
 
-  const handleSearch = async (query) => {
-  setLoading(true)
-  // setData([])
-  // console.log("query1",query);
-    // query.preventDefault();
+  const handleSearch = async () => {
+    setLoading(true);
+    setData([]);
+
     const url = `https://questgig.com/api/v2/search?q=${query}&api_key=${apiKey}`;
 
     try {
       const response = await axios.get(url);
-      const data = response.data
-      setLoading(false)
-      setData(data)
-      // setQuery(data)
+      const data = response.data;
+      setLoading(false);
+      setData(data);
       console.log(data);
-      // Process search results
     } catch (error) {
-      setLoading(false)
+      setLoading(false);
       console.error(error);
     }
   };
+
+  const handleInputChange = (e) => {
+    setQuery(e.target.value);
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleSearch();
+    }
+  };
+
   useEffect(() => {
-  }, [])
+    if (query !== '') {
+      handleSearch();
+    }
+  }, []);
+
   return (
     <div className="App">
       <div className='flex justify-between px-10 items-center  shadow-sm py-5'>
@@ -71,11 +70,16 @@ function All(query) {
         </button>
       </div>
     </div>
-      <Search setData={setData} setLoading={setLoading}  onchange={(e) => handleSearch(e.target.value)} />
+    <div className='flex mx-3  md:mx-[13rem] flex-col'>
+    <Search setData={setData} setLoading={setLoading}  onChange={handleInputChange}
+          onKeyPress={handleKeyPress} />
+      <Sugestion />
       {loading ? <p>losakdmkmdf </p> : data.length > 0 ? <>
+
+      <div className='mt-12'>
       {
-        data.map((C) => (
-          <Result
+          data.map((C) => (
+          <Result 
           
             title ={C.title}
             link ={C.link
@@ -84,13 +88,18 @@ function All(query) {
             snippet ={C.snippet}
           />
         ))
-
       }
+      </div>
+
+   
       </>:
         <>
           <h3>askmkcnfndmmn</h3>
         </>
       }
+    </div>
+
+
       {}
     </div>
   )

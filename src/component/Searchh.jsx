@@ -1,30 +1,37 @@
-import React from 'react'
+import React,{useState}from 'react';
 import {RiScreenshot2Fill} from 'react-icons/ri'
 import {FaMicrophoneAlt} from 'react-icons/fa'
-import { useNavigate } from 'react-router-dom';
+    import axios from 'axios';
+    import {useNavigate} from 'react-router-dom'
 
-const Searchh = () => {
-    const navigate =  useNavigate()
+const Search = ({setData , setLoading, onchange , onsubmit}) => {
+  const [searchQuery, setSearchQuery] = useState("")
+  const navigation = useNavigate();
 
-    function Handle(params) {
-        navigate('/search') 
-      }
-      
+
+  const handleSearch = () => {
+    // Perform your search logic here
+
+    // Navigate to the search results component with the search query as a parameter
+  navigation('/search');
+  };
+
+    
   return (
-<div className='flex  my-10   justify-center items-center ' >
-<div className='search flex px-5 text-slate-600  border border-blue-400  rounded-lg  p-3 mx-3  lg:w-[900px]'>
-        <button className='outline-none border-none  lg:w-[900px]' onClick={()=>{
-            navigate('/search')
-        }} >
-
-        </button>
-        <div className='gap-2 flex'>
+    <div className='flex  my-10   justify-center items-center '>
+ <div className='search flex px-5 text-slate-600  border border-blue-400  rounded-lg items-center p-3 mx-3  lg:w-[900px] '>
+    
+  <form action="" className='outline-none border-none flex-grow'  onSubmit={handleSearch} >
+  <input type="text"className='outline-none border-none flex-grow'         value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}    />
+  </form>
+     <div className='gap-2 flex'>
      <RiScreenshot2Fill />
       <FaMicrophoneAlt />
      </div>
+ </div>
     </div>
-</div>
-  )
+  );
 }
 
-export default Searchh
+export default Search;
